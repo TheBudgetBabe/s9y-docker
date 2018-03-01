@@ -6,6 +6,11 @@ set -e -o pipefail
 decofile=${DECOFILE:-/var/run/secrets/deco.json}
 /usr/local/bin/deco validate ${DECOFILE} && /usr/local/bin/deco run ${decofile}
 
+if [ ! -z "${FRESHINSTALL}" ]; then
+    echo "Starting with a fresh install"
+    rm -f /var/www/html/serendipity/serendipity_config_local.inc.php
+fi
+
 # Change ownership to enable online updates
 chown -R www-data /var/www/html/serendipity
 
