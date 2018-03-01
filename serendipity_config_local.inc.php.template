@@ -1,0 +1,27 @@
+<?php
+	/*
+	  Serendipity configuration file
+	*/
+
+	$serendipity['versionInstalled']  = '2.1.1';
+	$serendipity['dbName']            = '{{ .dbName }}';
+	$serendipity['dbPrefix']          = 'serendipity_';
+	$serendipity['dbHost']            = '{{ .dbHost }}:{{ .dbPort }}';
+	$serendipity['dbUser']            = '{{ .dbUser }}';
+	$serendipity['dbPass']            = '{{ .dbPass }}';
+	$serendipity['dbType']            = 'mysqli';
+	$serendipity['dbPersistent']      = false;
+	$serendipity['dbCharset']         = 'utf8';
+
+	// End of Serendipity configuration file
+	// You can place your own special variables after here:
+
+	if (getenv('HTTP_X_REAL_IP') != '') {
+		$_SERVER['REMOTE_ADDR'] = getenv('HTTP_X_REAL_IP');
+	} elseif (getenv('HTTP_X_FORWARDED_FOR') != '') {
+    	$_SERVER['REMOTE_ADDR'] = getenv('HTTP_X_FORWARDED_FOR');
+	}
+
+	$serendipity['noautodiscovery'] = true;
+	$serendipity['useTemplateLanguage'] = true;
+?>

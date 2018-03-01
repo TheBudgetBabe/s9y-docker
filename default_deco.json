@@ -1,0 +1,17 @@
+{
+    "filters": {
+        "/etc/apache2/apache2.conf": {
+            "serverName": "localhost",
+            "serverAdmin": "webmaster@localhost",
+            "serverPort": "80",
+            "logLevel": "warn"
+        },
+        "/var/www/html/serendipity/serendipity_config_local.inc.php": {
+            "dbName": "serendipity",
+            "dbHost": "s9ydb",
+            "dbPort": "3306",
+            "dbUser": "s9y",
+            "dbPass": "s9ySekret"
+        }
+    }
+}
