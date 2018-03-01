@@ -3,7 +3,8 @@
 
 set -e -o pipefail
 
-/usr/local/bin/deco validate && /usr/local/bin/deco run
+decofile=${DECOFILE:-/var/run/secrets/deco.json}
+/usr/local/bin/deco validate ${DECOFILE} && /usr/local/bin/deco run ${decofile}
 
 # Change ownership to enable online updates
 chown -R www-data /var/www/html/serendipity
