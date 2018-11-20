@@ -3,7 +3,7 @@
 	  Serendipity configuration file
 	*/
 
-	$serendipity['versionInstalled']  = '2.1.1';
+	$serendipity['versionInstalled']  = '{{ .dbVersion }}';
 	$serendipity['dbName']            = '{{ .dbName }}';
 	$serendipity['dbPrefix']          = 'serendipity_';
 	$serendipity['dbHost']            = '{{ .dbHost }}:{{ .dbPort }}';

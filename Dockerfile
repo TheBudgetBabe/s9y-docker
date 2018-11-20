@@ -52,7 +52,7 @@ RUN chown -Rh root:www-data /var/www/html && \
 
 COPY serendipity_config_local.inc.php.template /var/www/html/serendipity/serendipity_config_local.inc.php
 RUN chown root:www-data /var/www/html/serendipity/serendipity_config_local.inc.php && \
-	chmod 440  /var/www/html/serendipity/serendipity_config_local.inc.php
+	chmod 660  /var/www/html/serendipity/serendipity_config_local.inc.php
 
 COPY apache2.conf.template /src/apache2.conf.template
 RUN mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.original && \
