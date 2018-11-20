@@ -37,9 +37,9 @@ RUN a2enmod rewrite
 
 RUN mkdir -p /src /var/www/html/shared/uploads
 
-ADD https://github.com/s9y/Serendipity/releases/download/2.1.1/serendipity-2.1.1.zip /src/serendipity-2.1.1.zip
+ADD https://github.com/s9y/Serendipity/releases/download/2.1.4/serendipity-2.1.4.zip /src/serendipity-2.1.4.zip
 
-RUN cd /src && unzip serendipity-2.1.1.zip && \
+RUN cd /src && unzip serendipity-2.1.4.zip && \
     mv /src/serendipity /var/www/html/
 
 RUN chown -Rh root:www-data /var/www/html && \
