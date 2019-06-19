@@ -19,6 +19,14 @@ from `/var/run/secrets/deco.json`.  It allows you to pass the environment variab
 to you to get the `DECOFILE` on disk.  The image is setup to use [docker swarm secrets](https://docs.docker.com/engine/swarm/secrets/) without
 any extra work.
 
+### Docker build
+
+```bash
+export S9Y_VERSION=2.1.5
+docker build . --tag "thebudgetbabe/s9y:${S9Y_VERSION}" --build-arg "S9Y_VERSION=${S9Y_VERSION}"
+docker tag thebudgetbabe/s9y:${S9Y_VERSION} thebudgetbabe/s9y:latest
+```
+
 ### Docker run
 
 ```bash

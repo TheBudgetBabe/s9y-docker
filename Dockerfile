@@ -1,5 +1,7 @@
 FROM php:7.0-apache
 
+ARG S9Y_VERSION=2.5.1
+
 RUN apt-get update && apt-get install -y \
 	unzip \
     libicu-dev \
@@ -37,9 +39,9 @@ RUN a2enmod rewrite
 
 RUN mkdir -p /src /var/www/html/shared/uploads
 
-ADD https://github.com/s9y/Serendipity/releases/download/2.1.4/serendipity-2.1.4.zip /src/serendipity-2.1.4.zip
+ADD https://github.com/s9y/Serendipity/releases/download/${S9Y_VERSION}/serendipity-${S9Y_VERSION}.zip /src/serendipity-${S9Y_VERSION}.zip
 
-RUN cd /src && unzip serendipity-2.1.4.zip && \
+RUN cd /src && unzip serendipity-${S9Y_VERSION}.zip && \
     mv /src/serendipity /var/www/html/
 
 RUN chown -Rh root:www-data /var/www/html && \
