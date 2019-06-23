@@ -64,7 +64,20 @@ Coming soon
 
 ### As source image
 
-Coming soon
+You can source from this image with something like this, where the `entrypoint.sh` does any custom setup ...
+
+```
+FROM thebudgetbabe/s9y:latest
+
+WORKDIR /var/www/html/serendipity
+
+COPY entrypoint.sh /src
+RUN chown root:root /src/entrypoint.sh && chmod 555 /src/entrypoint.sh
+
+RUN echo 'opcache.enable=0' >> /usr/local/etc/php/conf.d/opcache-recommended.ini
+
+CMD ["/src/entrypoint.sh"]
+```
 
 ## Author
 
