@@ -1,6 +1,6 @@
 FROM php:7.0-apache
 
-ARG S9Y_VERSION=2.5.1
+ARG S9Y_VERSION=2.3.5
 
 RUN apt-get update && apt-get install -y \
 	unzip \
