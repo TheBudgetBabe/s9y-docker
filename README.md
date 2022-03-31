@@ -2,7 +2,7 @@
 
 This repository contains the Dockerfile to build an image for [Serendipity blogging platform](http://s9y.org/).
 
-The image is built from [the official PHP 7.0 docker PHP image](https://hub.docker.com/_/php/).
+The working image is built from [the official PHP 7.0 docker PHP image](https://hub.docker.com/_/php/).
 
 Images are available [here](https://hub.docker.com/r/thebudgetbabe/s9y/).
 
