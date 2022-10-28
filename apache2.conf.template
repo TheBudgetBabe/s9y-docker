@@ -7,14 +7,15 @@ KeepAliveTimeout 5
 User www-data
 Group www-data
 ErrorLog /proc/self/fd/2
-LogLevel {{ .logLevel }}
+LogLevel info
 
 IncludeOptional mods-enabled/*.load
 IncludeOptional mods-enabled/*.conf
+IncludeOptional conf.d/*.conf
 
-ServerName {{ .serverName }}
-ServerAdmin {{ .serverAdmin }}
-Listen {{ .serverPort }}
+ServerName localhost
+ServerAdmin webmaster@localhost
+Listen 8080
 HostnameLookups Off
 
 <Directory />

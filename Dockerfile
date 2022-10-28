@@ -61,6 +61,7 @@ RUN mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.original && \
 	cp /src/apache2.conf.template /etc/apache2/apache2.conf && \
 	chown root:root /etc/apache2/apache2.conf && \
 	chmod 644 /etc/apache2/apache2.conf
+RUN mkdir -p /etc/apache2/conf.d
 
 # Install Deco
 ARG DECO_VERSION=1.3.0
