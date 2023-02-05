@@ -38,3 +38,11 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile7.3
+          push: true
+          tags: thebudgetbabe/s9y:v2.3.5-php7.3
