@@ -1,18 +1,19 @@
-FROM php:7.3-apache
+FROM php:7.0-apache
 
 ARG S9Y_VERSION=2.3.5
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+	apt-get install -y \
 	unzip \
-    libicu-dev \
+	libicu-dev \
 	libcurl4-openssl-dev \
 	libmcrypt-dev \
-    memcached \
+	memcached \
 	libmemcached-dev \
 	imagemagick \
 	vim-tiny \
-    libpng-dev \
-    libjpeg-dev \
+	libpng-dev \
+	libjpeg-dev \
 	&& rm -rf /var/lib/apt/lists/* /var/www/html/index.html
 
 # http://www.s9y.org/36.html#A3
@@ -49,7 +50,7 @@ RUN chown -Rh root:www-data /var/www/html && \
 	chown -Rh www-data:www-data /var/www/html/serendipity/uploads && \
 	chown -Rh www-data:www-data /var/www/html/serendipity/plugins && \
 	chown -Rh www-data:www-data /var/www/html/serendipity/templates && \
-    chown -Rh www-data:www-data /var/www/html/serendipity/templates_c && \
+	chown -Rh www-data:www-data /var/www/html/serendipity/templates_c && \
 	chmod 777 /var/www/html/serendipity/templates_c
 
 COPY serendipity_config_local.inc.php.template /var/www/html/serendipity/serendipity_config_local.inc.php
@@ -61,6 +62,7 @@ RUN mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.original && \
 	cp /src/apache2.conf.template /etc/apache2/apache2.conf && \
 	chown root:root /etc/apache2/apache2.conf && \
 	chmod 644 /etc/apache2/apache2.conf
+RUN mkdir -p /etc/apache2/conf.d
 
 # Install Deco
 ARG DECO_VERSION=1.3.0
