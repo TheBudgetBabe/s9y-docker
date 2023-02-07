@@ -38,11 +38,3 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
-
-      - name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: Dockerfile.7.0
-          push: true
-          tags: ghcr.io/${{ github.repository }}:php7.0
