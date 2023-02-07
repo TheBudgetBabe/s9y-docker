@@ -43,6 +43,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: Dockerfile.7.3
+          file: Dockerfile.7.0
           push: true
-          tags: thebudgetbabe/s9y:v2.3.5-php7.3
+          tags: ghcr.io/${{ github.repository }}:php7.0
