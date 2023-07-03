@@ -1,6 +1,6 @@
-FROM php:7.3-apache
+FROM php:8.0-apache
 
-ARG S9Y_VERSION=2.3.5
+ARG S9Y_VERSION=2.4.0
 
 RUN apt-get update && \
 	apt-get install -y \
@@ -16,9 +16,8 @@ RUN apt-get update && \
     libjpeg-dev \
 	&& rm -rf /var/lib/apt/lists/* /var/www/html/index.html
 
-# http://www.s9y.org/36.html#A3
-RUN docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
-	&& docker-php-ext-install gd intl mbstring mysqli opcache
+RUN docker-php-ext-configure gd \
+	&& docker-php-ext-install gd intl mysqli opcache
 
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
@@ -55,7 +54,7 @@ RUN chown -Rh root:www-data /var/www/html && \
 
 COPY serendipity_config_local.inc.php.template /var/www/html/serendipity/serendipity_config_local.inc.php
 RUN chown root:www-data /var/www/html/serendipity/serendipity_config_local.inc.php && \
-	chmod 660  /var/www/html/serendipity/serendipity_config_local.inc.php
+	chmod 660 /var/www/html/serendipity/serendipity_config_local.inc.php
 
 COPY apache2.conf.template /src/apache2.conf.template
 RUN mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.original && \
@@ -65,7 +64,7 @@ RUN mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.original && \
 RUN mkdir -p /etc/apache2/conf.d
 
 # Install Deco
-ARG DECO_VERSION=1.3.0
+ARG DECO_VERSION=1.4.0
 ARG DECO_OS=linux
 ARG DECO_ARCH=amd64
 ADD https://github.com/YaleUniversity/deco/releases/download/v${DECO_VERSION}/deco_${DECO_VERSION}_${DECO_OS}_${DECO_ARCH}.tar.gz /usr/local/bin/deco.tar.gz
