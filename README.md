@@ -27,6 +27,13 @@ docker build . --tag "thebudgetbabe/s9y:${S9Y_VERSION}" --build-arg "S9Y_VERSION
 docker tag thebudgetbabe/s9y:${S9Y_VERSION} thebudgetbabe/s9y:latest
 ```
 
+### Docker buildx
+
+```bash
+docker buildx build --platform linux/amd64 --tag "thebudgetbabe/s9y:${S9Y_VERSION}" --build-arg "S9Y_VERSION=${S9Y_VERSION}" -o 'type=docker' .
+docker tag thebudgetbabe/s9y:${S9Y_VERSION} thebudgetbabe/s9y:latest
+```
+
 ### Docker run
 
 ```bash

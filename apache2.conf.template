@@ -15,7 +15,7 @@ IncludeOptional conf.d/*.conf
 
 ServerName localhost
 ServerAdmin webmaster@localhost
-Listen 8080
+Listen 80
 HostnameLookups Off
 
 <Directory />
