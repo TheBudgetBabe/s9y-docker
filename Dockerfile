@@ -18,7 +18,7 @@ RUN apt-get update && \
 	libjpeg62-turbo-dev \
 	libpng-dev \
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
-	&& docker-php-ext-install gd intl opcache \
+	&& docker-php-ext-install gd intl opcache mysqli \
 	&& rm -rf /var/lib/apt/lists/* /var/www/html/index.html
 
 # RUN docker-php-ext-configure gd --with-freetype --with-jpeg
