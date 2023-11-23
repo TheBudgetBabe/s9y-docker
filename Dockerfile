@@ -1,4 +1,4 @@
-FROM php:7.3-apache
+FROM php:7.4-apache
 
 ARG S9Y_VERSION=2.3.5
 
@@ -8,17 +8,19 @@ RUN apt-get update && \
     libicu-dev \
 	libcurl4-openssl-dev \
 	libmcrypt-dev \
-    memcached \
-	libmemcached-dev \
 	imagemagick \
 	vim-tiny \
-    libpng-dev \
-    libjpeg-dev \
+	libonig-dev \
+	libxml2-dev \
+	libfreetype6-dev \
+	libjpeg62-turbo-dev \
+	libpng-dev \
+	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
+	&& docker-php-ext-install gd intl opcache mysqli \
 	&& rm -rf /var/lib/apt/lists/* /var/www/html/index.html
 
-# http://www.s9y.org/36.html#A3
-RUN docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
-	&& docker-php-ext-install gd intl mbstring mysqli opcache
+# RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+# RUN	docker-php-ext-install gd intl mbstring mysqli opcache
 
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
@@ -30,10 +32,6 @@ RUN { \
 		echo 'opcache.fast_shutdown=1'; \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
-
-# PECL extensions
-RUN pecl install mcrypt memcached \
-	&& docker-php-ext-enable memcached
 
 # Enable mod_rewrite    
 RUN a2enmod rewrite
@@ -62,10 +60,9 @@ RUN mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.original && \
 	cp /src/apache2.conf.template /etc/apache2/apache2.conf && \
 	chown root:root /etc/apache2/apache2.conf && \
 	chmod 644 /etc/apache2/apache2.conf
-RUN mkdir -p /etc/apache2/conf.d
 
 # Install Deco
-ARG DECO_VERSION=1.3.0
+ARG DECO_VERSION=1.4.0
 ARG DECO_OS=linux
 ARG DECO_ARCH=amd64
 ADD https://github.com/YaleUniversity/deco/releases/download/v${DECO_VERSION}/deco_${DECO_VERSION}_${DECO_OS}_${DECO_ARCH}.tar.gz /usr/local/bin/deco.tar.gz

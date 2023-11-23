@@ -1,24 +1,24 @@
-FROM php:7.0-apache
+FROM php:7.3-apache
 
 ARG S9Y_VERSION=2.3.5
 
 RUN apt-get update && \
 	apt-get install -y \
 	unzip \
-	libicu-dev \
+    libicu-dev \
 	libcurl4-openssl-dev \
 	libmcrypt-dev \
-	memcached \
+    memcached \
 	libmemcached-dev \
 	imagemagick \
 	vim-tiny \
-	libpng-dev \
-	libjpeg-dev \
+    libpng-dev \
+    libjpeg-dev \
 	&& rm -rf /var/lib/apt/lists/* /var/www/html/index.html
 
 # http://www.s9y.org/36.html#A3
 RUN docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
-	&& docker-php-ext-install gd intl mbstring mcrypt mysqli opcache
+	&& docker-php-ext-install gd intl mbstring mysqli opcache
 
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
@@ -32,7 +32,7 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
 # PECL extensions
-RUN pecl install memcached \
+RUN pecl install mcrypt memcached \
 	&& docker-php-ext-enable memcached
 
 # Enable mod_rewrite    
@@ -50,7 +50,7 @@ RUN chown -Rh root:www-data /var/www/html && \
 	chown -Rh www-data:www-data /var/www/html/serendipity/uploads && \
 	chown -Rh www-data:www-data /var/www/html/serendipity/plugins && \
 	chown -Rh www-data:www-data /var/www/html/serendipity/templates && \
-	chown -Rh www-data:www-data /var/www/html/serendipity/templates_c && \
+    chown -Rh www-data:www-data /var/www/html/serendipity/templates_c && \
 	chmod 777 /var/www/html/serendipity/templates_c
 
 COPY serendipity_config_local.inc.php.template /var/www/html/serendipity/serendipity_config_local.inc.php
