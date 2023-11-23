@@ -8,8 +8,6 @@ RUN apt-get update && \
     libicu-dev \
 	libcurl4-openssl-dev \
 	libmcrypt-dev \
-	libmemcached11 \
-	libmemcached-dev \
 	imagemagick \
 	vim-tiny \
 	libonig-dev \
