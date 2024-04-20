@@ -3,6 +3,7 @@ FROM php:7.4-apache
 ARG S9Y_VERSION=2.3.5
 
 RUN apt-get update && \
+	apt-get upgrade -y && \
 	apt-get install -y \
 	unzip \
     libicu-dev \
